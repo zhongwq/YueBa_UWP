@@ -1,0 +1,34 @@
+﻿<Page
+    x:Class="YueBa.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YueBa"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Account" VerticalAlignment="Center"></TextBlock>
+        <TextBox x:Name="username" Grid.Row="0" Grid.Column="1" PlaceholderText="Username/Email" Width="200"></TextBox>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Password" VerticalAlignment="Center"></TextBlock>
+        <PasswordBox x:Name="password" Grid.Row="1" Grid.Column="1" PlaceholderText="Password" Margin="0,10" Width="200"></PasswordBox>
+
+        <Button Grid.Row="2" Grid.Column="0" Content="Log In" Click="LogInClick"></Button>
+        <Button Grid.Row="2" Grid.Column="1" Content="Register" Click="RegisterClick"></Button>
+
+        <CheckBox x:Name="remember" Grid.Row="3"></CheckBox>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="Remember Me"></TextBlock>
+    </Grid>
+</Page>
