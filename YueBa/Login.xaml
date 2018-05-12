@@ -9,26 +9,32 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Account" VerticalAlignment="Center"></TextBlock>
-        <TextBox x:Name="username" Grid.Row="0" Grid.Column="1" PlaceholderText="Username/Email" Width="200"></TextBox>
-
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Password" VerticalAlignment="Center"></TextBlock>
-        <PasswordBox x:Name="password" Grid.Row="1" Grid.Column="1" PlaceholderText="Password" Margin="0,10" Width="200"></PasswordBox>
-
-        <Button Grid.Row="2" Grid.Column="0" Content="Log In" Click="LogInClick"></Button>
-        <Button Grid.Row="2" Grid.Column="1" Content="Register" Click="RegisterClick"></Button>
-
-        <CheckBox x:Name="remember" Grid.Row="3"></CheckBox>
-        <TextBlock Grid.Row="3" Grid.Column="1" Text="Remember Me"></TextBlock>
+        <Grid>
+            <TextBlock Text="Login" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"></TextBlock>
+        </Grid>
+        <StackPanel Grid.Row="1" Width="300" HorizontalAlignment="Center">
+            <TextBox x:Name="username" Grid.Column="1" PlaceholderText="Username/Email"></TextBox>
+            <PasswordBox x:Name="password" Grid.Column="1" PlaceholderText="Password" Margin="0,10"></PasswordBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox x:Name="remember"></CheckBox>
+                <TextBlock Grid.Column="1" Text="Remember Me" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Log In" Click="LogInClick"/>
+                <Button Grid.Column="2" HorizontalAlignment="Right" Content="Register" Click="RegisterClick"></Button>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Page>
