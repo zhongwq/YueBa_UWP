@@ -35,6 +35,9 @@ namespace YueBa.Global
                 email = (String)composite["email"];
                 phone = (String)composite["phone"];
                 token = (String)composite["token"];
+            } else
+            {
+                username = email = phone = token = null;
             }
         }
 
@@ -48,6 +51,12 @@ namespace YueBa.Global
         public String getToken()
         {
             return token;
+        }
+
+        public void Logout()
+        {
+            ApplicationData.Current.LocalSettings.Values.Remove("store");
+            Initialize();
         }
     }
 }

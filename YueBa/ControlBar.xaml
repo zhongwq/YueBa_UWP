@@ -1,0 +1,80 @@
+﻿<Page
+    x:Class="YueBa.ControlBar"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YueBa"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid BorderBrush="Blue">
+        <SplitView x:Name="MainMenu" OpenPaneLength="160" CompactPaneLength="50" IsPaneOpen="False"
+                   DisplayMode="CompactInline" PaneBackground="LightGray">
+            <SplitView.Pane>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="Hamburgerbtn" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="29" Click="Hamburgerbtn_Click" VerticalAlignment="Top" />
+                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="24" Text="Menu"/>
+                    </StackPanel>
+                    <ListView Grid.Row="1" SelectionChanged="ListView_SelectionChanged">
+                        <ListViewItem x:Name="Index">
+                            <StackPanel Orientation="Horizontal" >
+                                <SymbolIcon Symbol="People" />
+                                <TextBlock Text="User Page"
+                                           Margin="24,0,0,0"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="Explore">
+                            <StackPanel Orientation="Horizontal" >
+                                <SymbolIcon Symbol="Globe" />
+                                <TextBlock Text="Explore"
+                                           Margin="24,0,0,0"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="AddPlace">
+                            <StackPanel Orientation="Horizontal" >
+                                <SymbolIcon Symbol="Add" />
+                                <TextBlock Text="AddPlace"
+                                           Margin="24,0,0,0"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="AddActivity">
+                            <StackPanel Orientation="Horizontal" >
+                                <SymbolIcon Symbol="Calendar" />
+                                <TextBlock Text="AddActivity"
+                                           Margin="24,0,0,0"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem x:Name="Settings">
+                            <StackPanel Orientation="Horizontal" >
+                                <SymbolIcon Symbol="Setting" />
+                                <TextBlock Text="Settings"
+                                           Margin="24,0,0,0"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem  x:Name="Logout">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                <SymbolIcon Symbol="Back" />
+                                <TextBlock Text="Logout"
+                                                   Margin="24,0,0,0"
+                                                   VerticalAlignment="Center" />
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </Grid>
+            </SplitView.Pane>
+            <Frame x:Name="ContentFrame" Margin="0,10" />
+        </SplitView>
+    </Grid>
+</Page>

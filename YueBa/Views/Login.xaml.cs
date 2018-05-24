@@ -42,7 +42,8 @@ namespace YueBa
                 store.email = (String)result["user"]["email"];
                 store.phone = (String)result["user"]["phone"];
 
-                var show = new MessageDialog("Login Successfully!").ShowAsync();
+                Frame rootFrame = Window.Current.Content as Frame;
+                rootFrame.Navigate(typeof(ControlBar), null);
             } else
             {
                 var show = new MessageDialog(result["error"].ToString()).ShowAsync();

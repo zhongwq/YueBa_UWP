@@ -21,11 +21,19 @@ namespace YueBa.Services
             return (JObject)JsonConvert.DeserializeObject(responseText);
         }
 
-        public static async Task<JObject> postRequest(string request, string postData)
+        public static async Task<JObject> postRequestJSON(string request, string postData)
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response = await httpClient.PostAsync(Config.api+request, new StringContent(postData, Encoding.UTF8, "application/json"));
+            string responseText = await response.Content.ReadAsStringAsync();
+            return (JObject)JsonConvert.DeserializeObject(responseText);
+        }
+
+        public static async Task<JObject> postRequestMultipartData(string request, MultipartFormDataContent content) {
+            var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
+            HttpResponseMessage response = await httpClient.PostAsync(Config.api + request, content);
             string responseText = await response.Content.ReadAsStringAsync();
             return (JObject)JsonConvert.DeserializeObject(responseText);
         }
