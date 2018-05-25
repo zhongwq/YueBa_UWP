@@ -16,11 +16,17 @@ namespace YueBa.Services
 {
     class PlaceServices
     {
+        /***
+         * 获取所有当前可用地点
+         */
         public static async Task<JObject> getAllPlaces()
         {
             return await BasicService.getRequest("getAllValidPlaces");
         }
 
+        /***
+         * 创建地点接口
+         */
         public static async Task<JObject> addPlace(String token, String name, String address, String detail, Double price, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
@@ -39,6 +45,9 @@ namespace YueBa.Services
             return await BasicService.postRequestMultipartData("addPlace", content);
         }
 
+        /***
+         * 更新地点信息
+         */
         public static async Task<JObject> updatePlace(String token, String id, String name, String address, String detail, Double price, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
@@ -57,10 +66,22 @@ namespace YueBa.Services
             return await BasicService.postRequestMultipartData("updatePlace", content);
         }
 
+        /***
+         * 删除地点信息
+         */
         public static async Task<JObject> deletePlace(String token, String id)
         {
             string jsonStr = JsonConvert.SerializeObject(new { token, id });
             return await BasicService.postRequestJSON("deletePlace", jsonStr);
+        }
+
+        /***
+         * 获取所有用户拥有的地点
+         */
+        public static async Task<JObject> getAllOwnedPlace(String token)
+        {
+            string jsonStr = JsonConvert.SerializeObject(new { token });
+            return await BasicService.postRequestJSON("getAllOwnedPlaces", jsonStr);
         }
     }
 }

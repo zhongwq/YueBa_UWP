@@ -12,12 +12,18 @@ namespace YueBa.Services
 {
     class AuthServices
     {
+        /***
+         * 登陆接口
+         */
         public static async Task<JObject> Login(String account, String password)
         {
             string jsonStr = JsonConvert.SerializeObject(new { account, password });
             return await BasicService.postRequestJSON("login", jsonStr);
         }
 
+        /***
+         * 注册
+         */
         public static async Task<JObject> Register(String username, String email, String password, String phone)
         {
             string jsonStr = JsonConvert.SerializeObject(new { username, email, password, phone });
