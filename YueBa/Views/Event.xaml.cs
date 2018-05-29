@@ -43,7 +43,7 @@ namespace YueBa.Views
 
             var file = await openPicker.PickSingleFileAsync();
 
-            await Services.EventServices.addEvent(Global.Store.getInstance().getToken(), "Test", "test", "2018-01-23", "2018-02-19", "1", 3, file);
+            Services.EventServices.addEvent(Global.Store.getInstance().getToken(), "Test", "test", "2018-01-23", "2018-02-19", "1", "3", file);
         }
     }
 }

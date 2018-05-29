@@ -18,7 +18,8 @@ namespace YueBa.Services
         public static async Task<JObject> Login(String account, String password)
         {
             string jsonStr = JsonConvert.SerializeObject(new { account, password });
-            return await BasicService.postRequestJSON("login", jsonStr);
+            string responseText = await BasicService.postRequestJSON("login", jsonStr);
+            return (responseText == null) ? null : (JObject)JsonConvert.DeserializeObject(responseText);
         }
 
         /***
@@ -27,7 +28,8 @@ namespace YueBa.Services
         public static async Task<JObject> Register(String username, String email, String password, String phone)
         {
             string jsonStr = JsonConvert.SerializeObject(new { username, email, password, phone });
-            return await BasicService.postRequestJSON("register", jsonStr);
+            string responseText = await BasicService.postRequestJSON("register", jsonStr);
+            return (responseText == null) ? null : (JObject)JsonConvert.DeserializeObject(responseText);
         }
     }
 }

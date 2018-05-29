@@ -19,15 +19,17 @@ namespace YueBa.Services
         /***
          * 获取所有当前可用地点
          */
-        public static async Task<JObject> getAllPlaces()
+        public static async Task<Places> getAllPlaces()
         {
-            return await BasicService.getRequest("getAllValidPlaces");
+            var json = JsonSerializer.Create();
+            String placesStr =  await BasicService.getRequest("getAllValidPlaces");
+            return json.Deserialize<Places>(new JsonTextReader(new StringReader(placesStr)));
         }
 
         /***
          * 创建地点接口
          */
-        public static async Task<JObject> addPlace(String token, String name, String address, String detail, Double price, StorageFile file = null)
+        public static async void addPlace(String token, String name, String address, String detail, Double price, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token),"token");
@@ -42,13 +44,13 @@ namespace YueBa.Services
                 var streamContent = new StreamContent(streamData);
                 content.Add(streamContent, "image", file.Name);
             }
-            return await BasicService.postRequestMultipartData("addPlace", content);
+            await BasicService.postRequestMultipartData("addPlace", content);
         }
 
         /***
          * 更新地点信息
          */
-        public static async Task<JObject> updatePlace(String token, String id, String name, String address, String detail, Double price, StorageFile file = null)
+        public static async void updatePlace(String token, String id, String name, String address, String detail, Double price, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token), "token");
@@ -63,25 +65,27 @@ namespace YueBa.Services
                 var streamContent = new StreamContent(streamData);
                 content.Add(streamContent, "image", file.Name);
             }
-            return await BasicService.postRequestMultipartData("updatePlace", content);
+            await BasicService.postRequestMultipartData("updatePlace", content);
         }
 
         /***
          * 删除地点信息
          */
-        public static async Task<JObject> deletePlace(String token, String id)
+        public static async void deletePlace(String token, String id)
         {
             string jsonStr = JsonConvert.SerializeObject(new { token, id });
-            return await BasicService.postRequestJSON("deletePlace", jsonStr);
+            await BasicService.postRequestJSON("deletePlace", jsonStr);
         }
 
         /***
          * 获取所有用户拥有的地点
          */
-        public static async Task<JObject> getAllOwnedPlace(String token)
+        public static async Task<Places> getAllOwnedPlace(String token)
         {
             string jsonStr = JsonConvert.SerializeObject(new { token });
-            return await BasicService.postRequestJSON("getAllOwnedPlaces", jsonStr);
+            var json = JsonSerializer.Create();
+            String placesStr = await BasicService.postRequestJSON("getAllOwnedPlaces", jsonStr);
+            return json.Deserialize<Places>(new JsonTextReader(new StringReader(placesStr)));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace YueBa.Global
         public String username;
         public String email;
         public String phone;
-        private String token = null;
+        public String token = null;
         private static Store instance;
 
         private Store() { }

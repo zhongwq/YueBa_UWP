@@ -44,7 +44,7 @@ namespace YueBa.Views
             var file = await openPicker.PickSingleFileAsync();
 
 
-            await Services.PlaceServices.addPlace(Global.Store.getInstance().getToken(), "Test2132", "address3", "detail23", 32.3, file);
+            Services.PlaceServices.addPlace(Global.Store.getInstance().getToken(), "Test2132", "address3", "detail23", 32.3, file);
         }
     }
 }

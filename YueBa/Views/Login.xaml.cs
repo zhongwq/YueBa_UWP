@@ -27,7 +27,7 @@ namespace YueBa
         private async void LogInClick(object sender, RoutedEventArgs e)
         {
             JObject result = await Services.AuthServices.Login(username.Text, password.Password);
-            if (result["error"] == null)
+            if (result != null)
             {
                 if ((bool)remember.IsChecked)
                 {
@@ -41,12 +41,10 @@ namespace YueBa
                 store.username = (String)result["user"]["username"];
                 store.email = (String)result["user"]["email"];
                 store.phone = (String)result["user"]["phone"];
+                store.token = (String)result["token"];
 
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(ControlBar), null);
-            } else
-            {
-                var show = new MessageDialog(result["error"].ToString()).ShowAsync();
             }
         }
 

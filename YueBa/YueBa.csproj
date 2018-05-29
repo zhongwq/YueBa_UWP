@@ -99,6 +99,7 @@
       <DependentUpon>ControlBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Global\Config.cs" />
+    <Compile Include="Models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Global\Store.cs" />
     <Compile Include="Services\AuthServices.cs" />
