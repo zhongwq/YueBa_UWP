@@ -38,88 +38,89 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
-            <ListView x:Name="EventListView" IsItemClickEnabled="True" ItemClick="EventItem_ItemClicked"
+            <ScrollViewer>
+                <ListView x:Name="EventListView" IsItemClickEnabled="True" ItemClick="EventItem_ItemClicked"
                       ItemsSource="{x:Bind test}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="local:EventItem">
-                        <UserControl>
-                            <Grid Height="170">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="200"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
-                                    <Image x:Name="picture" Source="{x:Bind img}" Height="140" Width="140" />
-                                </Grid>
-                                <Grid Grid.Column="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="45" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="40" />
-
-                                    </Grid.RowDefinitions>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="local:EventItem">
+                            <UserControl>
+                                <Grid Height="170">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
                                         <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="200"/>
                                     </Grid.ColumnDefinitions>
-                                    <Grid Grid.Column="2" Grid.Row="2">
+                                    <Grid Grid.Column="0">
+                                        <Image x:Name="picture" Source="{x:Bind img}" Height="140" Width="140" />
+                                    </Grid>
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="45" />
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="40" />
+
+                                        </Grid.RowDefinitions>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="50"/>
                                             <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text=" To " Grid.Column="0"  VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-                                        <TextBlock Text="{x:Bind endTime}" Grid.Column="1" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                        <Grid Grid.Column="2" Grid.Row="2">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"/>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text=" To " Grid.Column="0"  VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                            <TextBlock Text="{x:Bind endTime}" Grid.Column="1" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                        </Grid>
+                                        <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                        <TextBlock Text="Detail:" Grid.Row="1" Grid.Column="0"  Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+
+                                        <AppBarButton Grid.Row="2" Grid.Column="0"  Icon="Clock"  IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" IsEnabled="False">
+                                        </AppBarButton>
+
+
+                                        <TextBlock Text="{x:Bind name}" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                        <TextBlock Text="{x:Bind detail}" Grid.Row="1" Grid.Column="1"  Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                        <TextBlock Text="{x:Bind startTime}"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
                                     </Grid>
-                                    <TextBlock Text="Name:" Grid.Row="0" Grid.Column="0"  VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-                                    <TextBlock Text="Detail:" Grid.Row="1" Grid.Column="0"  Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-
-                                    <AppBarButton Grid.Row="2" Grid.Column="0"  Icon="Clock"  IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" IsEnabled="False">
-                                    </AppBarButton>
-
-
-                                    <TextBlock Text="{x:Bind name}" Grid.Row="0" Grid.Column="1"  VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-                                    <TextBlock Text="{x:Bind detail}" Grid.Row="1" Grid.Column="1"  Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-                                    <TextBlock Text="{x:Bind startTime}"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-                                </Grid>
-                                <Grid Grid.Column="2">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" >
+                                    <Grid Grid.Column="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" >
                                         <Run Text="{x:Bind participantsNum}"/>
                                         <Run Text="/"/>
                                         <Run Text="{x:Bind maxNum}"/>
-                                    </TextBlock>
-                                    <TextBlock Text="{x:Bind organizer.username}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-                                    <TextBlock Text="{x:Bind place.address}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
-                                    <AppBarButton Grid.Row="0" Grid.Column="0"  Icon="People"  IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False">
-                                    </AppBarButton>
-                                    <AppBarButton Grid.Row="1" Grid.Column="0"  Icon="Contact"  IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False">
-                                    </AppBarButton>
-                                    <AppBarButton Grid.Row="2" Grid.Column="0" Label="Temp" Icon="Map"  IsCompact="True" Height="50" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False">
-                                    </AppBarButton>
+                                        </TextBlock>
+                                        <TextBlock Text="{x:Bind organizer.username}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                        <TextBlock Text="{x:Bind place.address}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="Black" FontWeight="Normal" FontSize="15" LineHeight="20" TextWrapping="Wrap" />
+                                        <AppBarButton Grid.Row="0" Grid.Column="0"  Icon="People"  IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False">
+                                        </AppBarButton>
+                                        <AppBarButton Grid.Row="1" Grid.Column="0"  Icon="Contact"  IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False">
+                                        </AppBarButton>
+                                        <AppBarButton Grid.Row="2" Grid.Column="0" Label="Temp" Icon="Map"  IsCompact="True" Height="50" VerticalAlignment="Center" HorizontalAlignment="Right" IsEnabled="False">
+                                        </AppBarButton>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </UserControl>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
+                            </UserControl>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </Page>

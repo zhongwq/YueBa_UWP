@@ -199,5 +199,16 @@ namespace YueBa.Services
 
             return res != null;
         }
+
+        /***
+         * 根据Id获取单个EventItem
+         */
+        public static async Task<EventItem> getSingleEvent(String id)
+        {
+            String jsonStr = JsonConvert.SerializeObject(new {id });
+            String eventStr = await BasicService.postRequestJSON("getSingleEvent", jsonStr);
+            var json = JsonSerializer.Create();
+            return (eventStr == null) ? null : json.Deserialize<EventItem>(new JsonTextReader(new StringReader(eventStr)));
+        }
     }
 }
