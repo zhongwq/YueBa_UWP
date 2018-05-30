@@ -21,11 +21,13 @@
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Image x:Name="EventImg" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
                     <TextBlock x:Name="EventName" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" FontFamily="Arial"></TextBlock>
                     <Button x:Name="EditBtn" Visibility="Collapsed" Grid.Column="2" Content="编辑" VerticalAlignment="Center" HorizontalAlignment="Center" Click="EditBtn_Click"></Button>
                     <Button x:Name="participateBtn" Grid.Column="3" Content="参加" VerticalAlignment="Center" HorizontalAlignment="Center" Click="participateBtn_Click"></Button>
+                    <Button x:Name="shareBtn" Grid.Column="4" Content="分享" VerticalAlignment="Center" HorizontalAlignment="Center" Click="shareBtn_Click"></Button>
                 </Grid>
                 <Grid Height="60" Margin="0 20">
                     <Grid.ColumnDefinitions>

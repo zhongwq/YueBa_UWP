@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage.Streams;
 using Windows.UI.Composition;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -35,13 +37,47 @@ namespace YueBa.Views
             id = "1"; // 到时从页面传参获取id
         }
 
+        DataTransferManager dtm;
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            dtm = DataTransferManager.GetForCurrentView();
+            //创建event handler
+            dtm.DataRequested += dtm_DataRequested;
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            dtm.DataRequested -= dtm_DataRequested;
+        }
+
+        private async void dtm_DataRequested(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            var deferral = e.Request.GetDeferral();
+            DataPackage dp = e.Request.Data;
+            dp.Properties.Title = "共享文本";
+            dp.Properties.Description = "共享文本详情描述";
+            string str = "Name: " + detail.detail.name + "\n" + "Detail: " + detail.detail.detail + "\n" + detail.detail.startTime.ToString() + " - " + detail.detail.endTime.ToString() + '\n' + "地点: " + detail.detail.place.name + " 地址: " + detail.detail.place.address + '\n';
+            dp.SetText(str);
+
+            /*共享图片*/
+
+            dp.Properties.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(detail.detail.img));
+            dp.SetBitmap(RandomAccessStreamReference.CreateFromUri(new Uri(detail.detail.img)));
+
+            e.Request.Data = dp;
+            deferral.Complete();
+        }
+
         private EventDetail detail;
         private String id;
         private ObservableCollection<Participator> participatorList = new ObservableCollection<Participator>();
-
+        
         private async void getDetailEvent(String id)
         {
-            detail = await EventServices.getEventDetail(token, id);
+            detail = await EventServices.getEventDetail(Global.Store.getInstance().token, id);
             detail.detail.img = Global.Config.api + detail.detail.img;
             detail.detail.organizer.img = Global.Config.api + detail.detail.organizer.img;
             detail.detail.place.img = Global.Config.api + detail.detail.place.img;
@@ -106,6 +142,11 @@ namespace YueBa.Views
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
             //gotoEdit
+        }
+
+        private void shareBtn_Click(object sender, RoutedEventArgs e)
+        {
+            DataTransferManager.ShowShareUI();
         }
     }
 }
