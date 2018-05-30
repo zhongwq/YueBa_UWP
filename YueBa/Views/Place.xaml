@@ -8,8 +8,40 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock>Place</TextBlock>
-        <Button Click="Button_Click">Test</Button>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="image" Grid.Row="0" Source="Assets/StoreLogo.png" Height="100" Width="200"></Image>
+            <AppBarButton Grid.Row="1" Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
+            <TextBlock Grid.Row="2" Text="Name"></TextBlock>
+            <TextBox x:Name="name" Grid.Row="3" Margin="0,10"></TextBox>
+            <TextBlock Grid.Row="4" Text="Address"></TextBlock>
+            <TextBox x:Name="address" Grid.Row="5" Margin="0,10"></TextBox>
+            <TextBlock Grid.Row="6" Text="Price"></TextBlock>
+            <TextBox x:Name="price" Grid.Row="7" Margin="0,10"></TextBox>
+            <TextBlock Grid.Row="8" Text="Detail"></TextBlock>
+            <TextBox x:Name="detail" Grid.Row="9" Margin="0,10"></TextBox>
+            <Button x:Name="create" Grid.Row="12" Content="Create" HorizontalAlignment="Left" Click="CreateClick"></Button>
+            <Button x:Name="cancel" Grid.Row="12" Content="Cancel" HorizontalAlignment="Right"></Button>
+        </Grid>
     </Grid>
 </Page>

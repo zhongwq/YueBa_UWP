@@ -6,10 +6,91 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:config="using:YueBa.Global"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <TextBlock>Event</TextBlock>
-        <Button Click="Button_Click">Test</Button>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Event" TextAlignment="Center"></TextBlock>
+
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="300"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="70"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Image x:Name="image" Grid.Row="0" Height="100" Width="200" Source="Assets/StoreLogo.png"></Image>
+                <AppBarButton Grid.Row="1" Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
+                <TextBlock Grid.Row="2" Text="Place"></TextBlock>
+                <AutoSuggestBox x:Name="place" Grid.Row="3" TextChanged="TextChanged" SuggestionChosen="SuggestionChosen" TextMemberPath="name">
+                    <AutoSuggestBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Width="50" Source="{Binding img}" />
+                                <StackPanel Grid.Column="1" Margin="7,3,4,3">
+                                    <TextBlock FontSize="15" FontWeight="Bold" Text="{Binding name}"/>
+                                    <TextBlock>
+                                        <Run>电话：</Run>
+                                        <Run Text="{Binding owner.phone}" />
+                                    </TextBlock>
+                                    <TextBlock>
+                                        <Run>价格：</Run>
+                                        <Run Text="{Binding price}"></Run>
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </AutoSuggestBox.ItemTemplate>
+                </AutoSuggestBox>
+                <TextBlock Grid.Row="4" Text="Name"></TextBlock>
+                <TextBox x:Name="name" Grid.Row="5" Margin="0,10"></TextBox>
+                <TextBlock Grid.Row="6" Text="Start Time"></TextBlock>
+                <TextBox x:Name="startTime" Grid.Row="7" Margin="0,10"></TextBox>
+                <TextBlock Grid.Row="8" Text="End Time"></TextBlock>
+                <TextBox x:Name="endTime" Grid.Row="9" Margin="0,10"></TextBox>
+                <TextBlock Grid.Row="10" Text="Detail"></TextBlock>
+                <TextBox x:Name="detail" Grid.Row="11" Margin="0,10"></TextBox>
+                <TextBlock Grid.Row="12" Text="Max Number"></TextBlock>
+                <TextBox x:Name="maxNum" Grid.Row="13" Margin="0,10"></TextBox>
+                <Button x:Name="create" Grid.Row="14" Content="Create" HorizontalAlignment="Left" Click="CreateClick"></Button>
+                <Button x:Name="addPlace" Grid.Row="14" Content="Add New Place" HorizontalAlignment="Center" Click="AddPlaceClick"></Button>
+                <Button x:Name="cancel" Grid.Row="14" Content="Cancel" HorizontalAlignment="Right"></Button>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Page>
