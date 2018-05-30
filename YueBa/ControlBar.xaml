@@ -22,49 +22,49 @@
                         <Button x:Name="Hamburgerbtn" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" FontSize="29" Click="Hamburgerbtn_Click" VerticalAlignment="Top" />
                         <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="24" Text="Menu"/>
                     </StackPanel>
-                    <ListView Grid.Row="1" SelectionChanged="ListView_SelectionChanged">
-                        <ListViewItem x:Name="Index">
-                            <StackPanel Orientation="Horizontal" >
+                    <ListView x:Name="NavigateBar" Grid.Row="1" ItemClick="NavigateBar_ItemClick" IsItemClickEnabled="True">
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal" x:Name="Index">
                                 <SymbolIcon Symbol="People" />
                                 <TextBlock Text="User Page"
                                            Margin="24,0,0,0"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="Explore">
-                            <StackPanel Orientation="Horizontal" >
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal" x:Name="Explore">
                                 <SymbolIcon Symbol="Globe" />
                                 <TextBlock Text="Explore"
                                            Margin="24,0,0,0"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="AddPlace">
-                            <StackPanel Orientation="Horizontal" >
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal" x:Name="AddPlace">
                                 <SymbolIcon Symbol="Add" />
                                 <TextBlock Text="AddPlace"
                                            Margin="24,0,0,0"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="AddActivity">
-                            <StackPanel Orientation="Horizontal" >
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal" x:Name="AddActivity">
                                 <SymbolIcon Symbol="Calendar" />
                                 <TextBlock Text="AddActivity"
                                            Margin="24,0,0,0"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem x:Name="Settings">
-                            <StackPanel Orientation="Horizontal" >
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal" x:Name="Settings">
                                 <SymbolIcon Symbol="Setting" />
                                 <TextBlock Text="Settings"
                                            Margin="24,0,0,0"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </ListViewItem>
-                        <ListViewItem  x:Name="Logout">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                        <ListViewItem>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom"  x:Name="Logout">
                                 <SymbolIcon Symbol="Back" />
                                 <TextBlock Text="Logout"
                                                    Margin="24,0,0,0"

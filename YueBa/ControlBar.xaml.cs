@@ -40,7 +40,6 @@ namespace YueBa
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var x = (e.AddedItems[0] as ListViewItem).Name;
-
             NavigateToPage(x);
         }
 
@@ -72,12 +71,20 @@ namespace YueBa
                     rootFrame.Navigate(typeof(Login), "");
                     break;
                 case "EventDetail":
+                    NavigateBar.SelectedValue = null;
                     this.ContentFrame.Navigate(typeof(Detail), id);
                     break;
                 case "PlaceDetail":
+                    NavigateBar.SelectedValue = null;
                     this.ContentFrame.Navigate(typeof(PlaceDetail), id);
                     break;
             }
+        }
+
+        private void NavigateBar_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var item = (StackPanel)e.ClickedItem;
+            NavigateToPage(item.Name);
         }
     }
 }
