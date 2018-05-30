@@ -45,24 +45,23 @@ namespace YueBa.Views
                 MyEvents = await Services.EventServices.getAllEventsParticipatesIn(store.token);
                 foreach (var element in MyEvents.events)
                 {
-                    element.img = Global.Config.api + element.img;
+                    element.img = Config.api + element.img;
                     test.Add(element);
                 }
-
-
+                MyEvents = await Services.EventServices.getAllOwnedEvents(store.token);
+                foreach (var element in MyEvents.events)
+                {
+                    element.img = Config.api + element.img;
+                    test.Add(element);
+                }
             }
-
-
         }
 
 
         private void EventItem_ItemClicked(object sender, ItemClickEventArgs e)
         {
-
+            EventItem eventItem = (EventItem)e.ClickedItem;
+            ControlBar.Current.NavigateToPage("EventDetail", eventItem.id.ToString());
         }
-
-
     }
-
-
 }

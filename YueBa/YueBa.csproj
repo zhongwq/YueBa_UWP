@@ -141,6 +141,8 @@
     <None Include="YueBa_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\default.jpg" />
+    <Content Include="Assets\event.jpg" />
     <Content Include="Assets\Icon.png" />
     <Content Include="Assets\YueBa.png" />
     <Content Include="Properties\Default.rd.xml" />

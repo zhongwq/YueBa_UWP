@@ -33,14 +33,14 @@ namespace YueBa.Views
         public Detail()
         {
             this.InitializeComponent();
-            this.getDetailEvent("1");
-            id = "1"; // 到时从页面传参获取id
         }
 
         DataTransferManager dtm;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            id = (String)e.Parameter;
+            this.getDetailEvent(id);
             base.OnNavigatedTo(e);
             dtm = DataTransferManager.GetForCurrentView();
             //创建event handler
@@ -53,7 +53,7 @@ namespace YueBa.Views
             dtm.DataRequested -= dtm_DataRequested;
         }
 
-        private async void dtm_DataRequested(DataTransferManager sender, DataRequestedEventArgs e)
+        private void dtm_DataRequested(DataTransferManager sender, DataRequestedEventArgs e)
         {
             var deferral = e.Request.GetDeferral();
             DataPackage dp = e.Request.Data;
@@ -130,7 +130,7 @@ namespace YueBa.Views
             }
             if (flag)
             {
-                new MessageDialog(participateBtn.Content + "事件成功!").ShowAsync();
+                await new MessageDialog(participateBtn.Content + "事件成功!").ShowAsync();
             }
             while(participatorList.Count > 0)
             {
@@ -141,8 +141,7 @@ namespace YueBa.Views
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            ControlBar frame = (ControlBar)Window.Current.Content;
-            frame.NavigateToPage("EditEvent", id);
+            ControlBar.Current.NavigateToPage("EditEvent", id);
         }
 
         private void shareBtn_Click(object sender, RoutedEventArgs e)

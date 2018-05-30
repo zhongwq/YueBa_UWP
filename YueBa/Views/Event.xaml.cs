@@ -38,6 +38,8 @@ namespace YueBa.Views
             GetAllPlaces();
         }
 
+        private StorageFile file;
+
         private async void GetAllPlaces()
         {
             places = await Services.PlaceServices.getAllPlaces();
@@ -62,15 +64,13 @@ namespace YueBa.Views
 
         private void AddPlaceClick(object sender, RoutedEventArgs e)
         {
-            ControlBar rootFrame = Window.Current.Content as ControlBar;
-            rootFrame.NavigateToPage("Place");
+            ControlBar.Current.NavigateToPage("Place");
         }
 
         private void SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             PlaceItem temp = args.SelectedItem as PlaceItem;
             place.Tag = temp.id;
-            //image.Source = new BitmapImage(new Uri(Config.api + temp.img));
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -95,7 +95,7 @@ namespace YueBa.Views
             openPicker.FileTypeFilter.Add(".jpeg");
             openPicker.FileTypeFilter.Add(".png");
 
-            var file = await openPicker.PickSingleFileAsync();
+            file = await openPicker.PickSingleFileAsync();
 
             if (file != null)
             {
@@ -108,12 +108,10 @@ namespace YueBa.Views
             }
         }
 
-        private void CreateClick(object sender, RoutedEventArgs e)
+        private async void CreateClick(object sender, RoutedEventArgs e)
         {
-            ControlBar rootFrame = Window.Current.Content as ControlBar;
-            rootFrame.NavigateToPage("Index");
-
-            Services.EventServices.addEvent(Store.getInstance().getToken(), name.Text, detail.Text, startTime.Text, endTime.Text, place.Tag.ToString(), maxNum.Text);
+            ControlBar.Current.NavigateToPage("Index");
+            await Services.EventServices.addEvent(Store.getInstance().getToken(), name.Text, detail.Text, startTime.Text, endTime.Text, place.Tag.ToString(), maxNum.Text, file);
         }
     }
 }

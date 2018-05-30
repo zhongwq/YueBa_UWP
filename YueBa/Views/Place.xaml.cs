@@ -65,9 +65,8 @@ namespace YueBa.Views
             temp.address = address.Text;
             temp.detail = detail.Text;
             temp.price = Double.Parse(price.Text);
-            Services.PlaceServices.addPlace(Store.getInstance().getToken(), temp.name, temp.address, temp.detail, temp.price, file);
-            ControlBar rootFrame = Window.Current.Content as ControlBar;
-            rootFrame.NavigateToPage("Index");
+            await Services.PlaceServices.addPlace(Store.getInstance().getToken(), temp.name, temp.address, temp.detail, temp.price, file);
+            ControlBar.Current.NavigateToPage("Index");
         }
     }
 }

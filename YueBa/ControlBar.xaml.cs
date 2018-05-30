@@ -23,10 +23,13 @@ namespace YueBa
     /// </summary>
     public sealed partial class ControlBar : Page
     {
+        public static ControlBar Current;
+
         public ControlBar()
         {
             this.InitializeComponent();
             this.ContentFrame.Navigate(typeof(Index));
+            Current = this;
         }
 
         private void Hamburgerbtn_Click(object sender, RoutedEventArgs e)
@@ -67,6 +70,12 @@ namespace YueBa
                     Global.Store.getInstance().Logout();
                     Frame rootFrame = Window.Current.Content as Frame;
                     rootFrame.Navigate(typeof(Login), "");
+                    break;
+                case "EventDetail":
+                    this.ContentFrame.Navigate(typeof(Detail), id);
+                    break;
+                case "PlaceDetail":
+                    this.ContentFrame.Navigate(typeof(PlaceDetail), id);
                     break;
             }
         }

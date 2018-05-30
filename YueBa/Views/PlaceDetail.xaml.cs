@@ -57,16 +57,14 @@ namespace YueBa.Views
             bool flag = await Services.PlaceServices.deletePlace(Global.Store.getInstance().token, id);
             if (flag)
             {
-                new MessageDialog("删除成功").ShowAsync();
-                ControlBar frame = (ControlBar)Window.Current.Content;
-                frame.NavigateToPage("Index");
+                await new MessageDialog("删除成功").ShowAsync();
+                ControlBar.Current.NavigateToPage("Index");
             }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            ControlBar frame = (ControlBar)Window.Current.Content;
-            frame.NavigateToPage("EditPlace", id);
+            ControlBar.Current.NavigateToPage("EditPlace", id);
         }
     }
 }

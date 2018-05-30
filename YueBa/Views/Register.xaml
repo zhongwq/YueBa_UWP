@@ -16,6 +16,12 @@
             <TextBlock Text="Register" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"></TextBlock>
         </Grid>
         <StackPanel Grid.Row="1" Width="300" HorizontalAlignment="Center">
+            <Ellipse Width="100" Height="100">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="userImg" ImageSource="ms-appx:///Assets/default.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <AppBarButton Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
             <TextBox x:Name="username" PlaceholderText="Username"></TextBox>
             <PasswordBox x:Name="password" PlaceholderText="Password" Margin="0,10"></PasswordBox>
             <TextBox x:Name="email" PlaceholderText="Email"></TextBox>

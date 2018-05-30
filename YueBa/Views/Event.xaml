@@ -16,14 +16,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Event" TextAlignment="Center"></TextBlock>
-
-        <Grid Grid.Column="1" Grid.Row="1">
+        <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="300"></ColumnDefinition>
@@ -49,7 +42,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Image x:Name="image" Grid.Row="0" Height="100" Width="200" Source="Assets/StoreLogo.png"></Image>
+                <Image x:Name="image" Grid.Row="0" Height="100" Width="200" Stretch="Fill" Source="ms-appx:///Assets/event.jpg"></Image>
                 <AppBarButton Grid.Row="1" Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
                 <TextBlock Grid.Row="2" Text="Place"></TextBlock>
                 <AutoSuggestBox x:Name="place" Grid.Row="3" TextChanged="TextChanged" SuggestionChosen="SuggestionChosen" TextMemberPath="name">
