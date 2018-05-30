@@ -93,5 +93,16 @@ namespace YueBa.Services
             String placesStr = await BasicService.postRequestJSON("getAllOwnedPlaces", jsonStr);
             return json.Deserialize<Places>(new JsonTextReader(new StringReader(placesStr)));
         }
+
+        /***
+         * 获取Place详情
+         */
+        public static async Task<PlaceDetailClass> getPlaceDetail(String token, String id)
+        {
+            string jsonStr = JsonConvert.SerializeObject(new { token, id });
+            var json = JsonSerializer.Create();
+            String eventsStr = await BasicService.postRequestJSON("getDetailPlace", jsonStr);
+            return (eventsStr == null) ? null : json.Deserialize<PlaceDetailClass>(new JsonTextReader(new StringReader(eventsStr)));
+        }
     }
 }

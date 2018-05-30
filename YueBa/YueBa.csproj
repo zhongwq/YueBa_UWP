@@ -127,6 +127,9 @@
     <Compile Include="Views\Place.xaml.cs">
       <DependentUpon>Place.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PlaceDetail.xaml.cs">
+      <DependentUpon>PlaceDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Place.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlaceDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

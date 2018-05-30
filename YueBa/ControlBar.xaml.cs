@@ -38,7 +38,12 @@ namespace YueBa
         {
             var x = (e.AddedItems[0] as ListViewItem).Name;
 
-            switch (x)
+            NavigateToPage(x);
+        }
+
+        public void NavigateToPage(String page, String id = "")
+        {
+            switch (page)
             {
                 case "Index":
                     this.ContentFrame.Navigate(typeof(Index));
@@ -51,6 +56,12 @@ namespace YueBa
                     break;
                 case "AddActivity":
                     this.ContentFrame.Navigate(typeof(Event));
+                    break;
+                case "EditEvent":
+                    this.ContentFrame.Navigate(typeof(Event), id);
+                    break;
+                case "EditPlace":
+                    this.ContentFrame.Navigate(typeof(Place), id);
                     break;
                 case "Logout":
                     Global.Store.getInstance().Logout();

@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="YueBa.Views.PlaceDetail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YueBa.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <ScrollViewer x:Name="BasicInfo" Width="700">
+            <StackPanel Margin="40 20">
+                <Grid Height="100">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"></ColumnDefinition>
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image x:Name="PlaceImg" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+                    <TextBlock x:Name="PlaceName" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" FontFamily="Arial"></TextBlock>
+                    <Button x:Name="EditBtn" Visibility="Collapsed" Grid.Column="2" Content="编辑" VerticalAlignment="Center" HorizontalAlignment="Center" Click="EditBtn_Click"></Button>
+                    <Button x:Name="deleteBtn" Visibility="Collapsed" Grid.Column="3" Content="删除" VerticalAlignment="Center" HorizontalAlignment="Center" Click="deleteBtn_Click"></Button>
+                </Grid>
+                <Grid Height="60" Margin="0 20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">Owner:</TextBlock>
+                    <Ellipse Grid.Column="1" Width="60" Height="60">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="ownerImg" ImageSource="assets/Icon.jpg"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock x:Name="ownerName" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left"></TextBlock>
+                    <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">电话:</TextBlock>
+                    <TextBlock x:Name="phone" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">15626225848</TextBlock>
+                </Grid>
+                <Grid Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center">价格:(每小时) </TextBlock>
+                    <TextBlock x:Name="price"  Grid.Column="1" VerticalAlignment="Center">45</TextBlock>
+                </Grid>
+                <TextBlock Margin="20" FontSize="22" FontWeight="Bold">地点详情</TextBlock>
+                <TextBlock x:Name="detail" TextWrapping="WrapWholeWords" Margin="20 0">
+                    那功夫第四宫的粉丝哦怕大哥i哦就上面的富婆公开哦皮肤的考生破壳攻破对方开个破反动派顾客破发点看普工看到佛山个
+                </TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -141,7 +141,8 @@ namespace YueBa.Views
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            //gotoEdit
+            ControlBar frame = (ControlBar)Window.Current.Content;
+            frame.NavigateToPage("EditEvent", id);
         }
 
         private void shareBtn_Click(object sender, RoutedEventArgs e)

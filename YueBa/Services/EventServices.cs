@@ -171,12 +171,12 @@ namespace YueBa.Services
          * 获取Event详情
          */
          public static async Task<EventDetail> getEventDetail(String token, String id)
-        {
+         {
             string jsonStr = JsonConvert.SerializeObject(new { token, id });
             var json = JsonSerializer.Create();
             String eventsStr = await BasicService.postRequestJSON("getDetailEvent", jsonStr);
             return (eventsStr == null) ? null : json.Deserialize<EventDetail>(new JsonTextReader(new StringReader(eventsStr)));
-        }
+         }
 
         /***
          * 参与事件的接口

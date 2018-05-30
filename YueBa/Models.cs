@@ -116,4 +116,26 @@ namespace YueBa
         public DateTime createdAt { get; set; }
         public DateTime updatedAt { get; set; }
     }
+
+    public class PlaceDetailClass
+    {
+        public PlaceDetailItem detail { get; set; }
+    }
+
+    public class PlaceDetailItem
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string address { get; set; }
+        public string detail { get; set; }
+        public int price { get; set; }
+        public bool available { get; set; }
+        public string img { get; set; }
+        public DateTime createdAt { get; set; }
+        public DateTime updatedAt { get; set; }
+        public int ownerId { get; set; }
+        public Owner owner { get; set; }
+        public EventItem eventItem { get; set; }
+        public bool editFlag { get; set; }
+    }
 }
