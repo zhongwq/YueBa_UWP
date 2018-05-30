@@ -29,7 +29,7 @@ namespace YueBa.Services
         /***
          * 创建地点接口
          */
-        public static async void addPlace(String token, String name, String address, String detail, Double price, StorageFile file = null)
+        public static async Task<bool> addPlace(String token, String name, String address, String detail, Double price, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token),"token");
@@ -44,13 +44,15 @@ namespace YueBa.Services
                 var streamContent = new StreamContent(streamData);
                 content.Add(streamContent, "image", file.Name);
             }
-            await BasicService.postRequestMultipartData("addPlace", content);
+            var res = await BasicService.postRequestMultipartData("addPlace", content);
+
+            return res != null;
         }
 
         /***
          * 更新地点信息
          */
-        public static async void updatePlace(String token, String id, String name, String address, String detail, Double price, StorageFile file = null)
+        public static async Task<bool> updatePlace(String token, String id, String name, String address, String detail, Double price, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token), "token");
@@ -65,16 +67,20 @@ namespace YueBa.Services
                 var streamContent = new StreamContent(streamData);
                 content.Add(streamContent, "image", file.Name);
             }
-            await BasicService.postRequestMultipartData("updatePlace", content);
+            var res = await BasicService.postRequestMultipartData("updatePlace", content);
+
+            return res != null;
         }
 
         /***
          * 删除地点信息
          */
-        public static async void deletePlace(String token, String id)
+        public static async Task<bool> deletePlace(String token, String id)
         {
             string jsonStr = JsonConvert.SerializeObject(new { token, id });
-            await BasicService.postRequestJSON("deletePlace", jsonStr);
+            var res = await BasicService.postRequestJSON("deletePlace", jsonStr);
+
+            return res != null;
         }
 
         /***

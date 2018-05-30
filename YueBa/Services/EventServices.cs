@@ -17,7 +17,7 @@ namespace YueBa.Services
         /***
          * 创建事件接口, 可同时创建Place
          */
-        public static async void addEvent_NewPlace(String token, String name, String detail, String startTime, String endTime, String placeName, String address, String placeDetail, String price, String maxNum, StorageFile file = null)
+        public static async Task<bool> addEvent_NewPlace(String token, String name, String detail, String startTime, String endTime, String placeName, String address, String placeDetail, String price, String maxNum, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token), "token");
@@ -38,13 +38,15 @@ namespace YueBa.Services
                 content.Add(streamContent, "image", file.Name);
             }
 
-            await BasicService.postRequestMultipartData("addEvent", content);
+            var res = await BasicService.postRequestMultipartData("addEvent", content);
+
+            return res != null;
         }
 
         /***
          * 创建Event接口
          */
-        public static async void addEvent(String token, String name, String detail, String startTime, String endTime, String PlaceId, String maxNum, StorageFile file = null)
+        public static async Task<bool> addEvent(String token, String name, String detail, String startTime, String endTime, String PlaceId, String maxNum, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token), "token");
@@ -61,22 +63,26 @@ namespace YueBa.Services
                 var streamContent = new StreamContent(streamData);
                 content.Add(streamContent, "image", file.Name);
             }
-            await BasicService.postRequestMultipartData("addEvent", content);
+            var res = await BasicService.postRequestMultipartData("addEvent", content);
+
+            return res != null;
         }
 
         /***
          * 删除Event接口
          */
-        public static async void deleteEvent(String token, String id)
+        public static async Task<bool> deleteEvent(String token, String id)
         {
             String jsonStr = JsonConvert.SerializeObject(new { token, id });
-            await BasicService.postRequestJSON("deleteEvent", jsonStr);
+            var res = await BasicService.postRequestJSON("deleteEvent", jsonStr);
+
+            return res != null;
         }
 
         /***
          * 更新Event接口
          */
-        public static async void updateEvent(String token, String id, String name, String detail, String startTime, String endTime, String PlaceId, String maxNum, StorageFile file = null)
+        public static async Task<bool> updateEvent(String token, String id, String name, String detail, String startTime, String endTime, String PlaceId, String maxNum, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(id), "id");
@@ -94,13 +100,15 @@ namespace YueBa.Services
                 var streamContent = new StreamContent(streamData);
                 content.Add(streamContent, "image", file.Name);
             }
-            await BasicService.postRequestMultipartData("updateEvent", content);
+            var res = await BasicService.postRequestMultipartData("updateEvent", content);
+
+            return res != null;
         }
 
         /***
          * 更新Event，可创建地点
          */
-        public static async void updateEvent_NewPlace(String token, String id, String name, String detail, String startTime, String endTime, String placeName, String address, String placeDetail, String price, String maxNum, StorageFile file = null)
+        public static async Task<bool> updateEvent_NewPlace(String token, String id, String name, String detail, String startTime, String endTime, String placeName, String address, String placeDetail, String price, String maxNum, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(id), "id");
@@ -122,7 +130,9 @@ namespace YueBa.Services
                 content.Add(streamContent, "image", file.Name);
             }
 
-            await BasicService.postRequestMultipartData("addEvent", content);
+            var res = await BasicService.postRequestMultipartData("addEvent", content);
+
+            return res != null;
         }
 
         /***
@@ -158,21 +168,36 @@ namespace YueBa.Services
         }
 
         /***
+         * 获取Event详情
+         */
+         public static async Task<EventDetail> getEventDetail(String token, String id)
+        {
+            string jsonStr = JsonConvert.SerializeObject(new { token, id });
+            var json = JsonSerializer.Create();
+            String eventsStr = await BasicService.postRequestJSON("getDetailEvent", jsonStr);
+            return (eventsStr == null) ? null : json.Deserialize<EventDetail>(new JsonTextReader(new StringReader(eventsStr)));
+        }
+
+        /***
          * 参与事件的接口
          */
-        public static async void participateEvent(String token, String id)
+        public static async Task<bool> participateEvent(String token, String id)
         {
             String jsonStr = JsonConvert.SerializeObject(new { token, id });
-            await BasicService.postRequestJSON("participate", jsonStr);
+            var res = await BasicService.postRequestJSON("participate", jsonStr);
+
+            return res != null;
         }
 
         /***
          * 退出事件的接口
          */
-        public static async void exitEvent(String token, String id)
+        public static async Task<bool> exitEvent(String token, String id)
         {
             String jsonStr = JsonConvert.SerializeObject(new { token, id });
-            await BasicService.postRequestJSON("exitEvent", jsonStr);
+            var res = await BasicService.postRequestJSON("exitEvent", jsonStr);
+
+            return res != null;
         }
     }
 }

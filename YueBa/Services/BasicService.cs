@@ -24,7 +24,7 @@ namespace YueBa.Services
             {
                 var json = JsonSerializer.Create();
                 ErrorItem error = json.Deserialize<ErrorItem>(new JsonTextReader(new StringReader(responseText)));
-                new MessageDialog(error.error).ShowAsync();
+                await new MessageDialog(error.error).ShowAsync();
                 return null;
             }
             return responseText;
@@ -40,7 +40,7 @@ namespace YueBa.Services
             {
                 var json = JsonSerializer.Create();
                 ErrorItem error = json.Deserialize<ErrorItem>(new JsonTextReader(new StringReader(responseText)));
-                new MessageDialog(error.error).ShowAsync();
+                await new MessageDialog(error.error).ShowAsync();
                 return null;
             }
             return responseText;
@@ -55,7 +55,7 @@ namespace YueBa.Services
             {
                 var json = JsonSerializer.Create();
                 ErrorItem error = json.Deserialize<ErrorItem>(new JsonTextReader(new StringReader(responseText)));
-                new MessageDialog(error.error).ShowAsync();
+                await new MessageDialog(error.error).ShowAsync();
                 return null;
             }
             return responseText;

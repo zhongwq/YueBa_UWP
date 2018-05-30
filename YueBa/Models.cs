@@ -33,6 +33,7 @@ namespace YueBa
         public string email { get; set; }
         public string password { get; set; }
         public string phone { get; set; }
+        public string img { get; set; }
         public DateTime createdAt { get; set; }
         public DateTime updatedAt { get; set; }
     }
@@ -67,6 +68,7 @@ namespace YueBa
         public string email { get; set; }
         public string password { get; set; }
         public string phone { get; set; }
+        public string img { get; set; }
         public DateTime createdAt { get; set; }
         public DateTime updatedAt { get; set; }
     }
@@ -75,5 +77,43 @@ namespace YueBa
     public class ErrorItem
     {
         public string error { get; set; }
+    }
+
+
+    public class EventDetail
+    {
+        public EventDetailItem detail { get; set; }
+    }
+
+    public class EventDetailItem
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string detail { get; set; }
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
+        public int maxNum { get; set; }
+        public string img { get; set; }
+        public DateTime createdAt { get; set; }
+        public DateTime updatedAt { get; set; }
+        public int organizerId { get; set; }
+        public int placeId { get; set; }
+        public Organizer organizer { get; set; }
+        public PlaceItem place { get; set; }
+        public Participator[] participators { get; set; }
+        public bool flag { get; set; }
+        public bool editFlag { get; set; }
+    }
+
+    public class Participator
+    {
+        public int id { get; set; }
+        public string username { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public string phone { get; set; }
+        public string img { get; set; }
+        public DateTime createdAt { get; set; }
+        public DateTime updatedAt { get; set; }
     }
 }
