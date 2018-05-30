@@ -30,7 +30,7 @@
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Image x:Name="image" Grid.Row="0" Source="Assets/StoreLogo.png" Height="100" Width="200"></Image>
+            <Image x:Name="image" Grid.Row="0" Height="100" Width="200" Stretch="Fill" Source="ms-appx:///Assets/event.jpg"></Image>
             <AppBarButton Grid.Row="1" Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
             <TextBlock Grid.Row="2" Text="Name"></TextBlock>
             <TextBox x:Name="name" Grid.Row="3" Margin="0,10"></TextBox>

@@ -128,7 +128,7 @@ namespace YueBa
         public string name { get; set; }
         public string address { get; set; }
         public string detail { get; set; }
-        public int price { get; set; }
+        public double price { get; set; }
         public bool available { get; set; }
         public string img { get; set; }
         public DateTime createdAt { get; set; }

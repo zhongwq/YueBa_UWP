@@ -27,13 +27,18 @@ namespace YueBa.Views
         public PlaceDetail()
         {
             this.InitializeComponent();
-            id = "1";
-            getPlaceDetail();
         }
 
         private PlaceDetailClass place;
         private String id;
-        
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            id = (String)e.Parameter;
+            this.getPlaceDetail();
+            base.OnNavigatedTo(e);
+        } 
+
         private async void getPlaceDetail()
         {
             place = await Services.PlaceServices.getPlaceDetail(Global.Store.getInstance().token, id);

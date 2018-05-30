@@ -131,6 +131,11 @@ namespace YueBa.Views
             if (flag)
             {
                 await new MessageDialog(participateBtn.Content + "事件成功!").ShowAsync();
+                if ((String)participateBtn.Content == "删除")
+                {
+                    ControlBar.Current.NavigateToPage("Index");
+                    return;
+                }
             }
             while(participatorList.Count > 0)
             {

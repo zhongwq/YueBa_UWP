@@ -110,8 +110,8 @@ namespace YueBa.Views
 
         private async void CreateClick(object sender, RoutedEventArgs e)
         {
-            ControlBar.Current.NavigateToPage("Index");
             await Services.EventServices.addEvent(Store.getInstance().getToken(), name.Text, detail.Text, startTime.Text, endTime.Text, place.Tag.ToString(), maxNum.Text, file);
+            ControlBar.Current.NavigateToPage("Index");
         }
     }
 }
