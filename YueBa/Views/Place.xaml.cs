@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -60,6 +62,28 @@ namespace YueBa.Views
 
         private async void CreateClick(object sender, RoutedEventArgs e)
         {
+            if (price.Text == ""  ||
+                name.Text == ""   ||
+                detail.Text == "" ||
+                address.Text == "")
+            {
+                var show = new MessageDialog("各项输入不得为空").ShowAsync();
+                return;
+            }
+
+            string pattern = @"^[0-9]*$";
+            if (!Regex.IsMatch(price.Text, pattern))
+            {
+                var show = new MessageDialog("价格输入不合法").ShowAsync();
+                return;
+            }
+
+            if (Double.Parse(price.Text) < 0)
+            {
+                var show = new MessageDialog("价格不得小于0").ShowAsync();
+                return;
+            }
+
             PlaceItem temp = new PlaceItem();
             temp.name = name.Text;
             temp.address = address.Text;

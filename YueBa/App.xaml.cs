@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -31,6 +32,8 @@ namespace YueBa
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             Global.Store.getInstance().Initialize();
+            TileUpdater tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication();
+            TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
         }
 
         /// <summary>

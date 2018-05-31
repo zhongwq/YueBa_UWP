@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using YueBa.Global;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -46,10 +47,26 @@ namespace YueBa
 
         private async void SignUpClick(object sender, RoutedEventArgs e)
         {
+            Store store = Store.getInstance();
             JObject result = await Services.AuthServices.Register(username.Text, email.Text, password.Password, phone.Text, file);
             if (result != null)
             {
-                var show = new MessageDialog("Sign Up successfully!").ShowAsync();
+                ApplicationDataCompositeValue composite = new ApplicationDataCompositeValue();
+                composite["token"] = result["token"].ToString();
+                composite["username"] = result["user"]["username"].ToString();
+                composite["email"] = result["user"]["email"].ToString();
+                composite["phone"] = result["user"]["phone"].ToString();
+                composite["img"] = result["user"]["img"].ToString();
+                ApplicationData.Current.LocalSettings.Values["store"] = composite;
+
+                store.username = (String)result["user"]["username"];
+                store.email = (String)result["user"]["email"];
+                store.phone = (String)result["user"]["phone"];
+                store.token = (String)result["token"];
+                store.img = (String)result["user"]["img"];
+
+                Frame rootFrame = Window.Current.Content as Frame;
+                rootFrame.Navigate(typeof(ControlBar), null);
             }
         }
 

@@ -135,6 +135,11 @@ namespace YueBa.Services
             return res != null;
         }
 
+        internal static Task getAllEventsParticipatesIn(object token)
+        {
+            throw new NotImplementedException();
+        }
+
         /***
          * 获取所有Event
          */

@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using YueBa.Services;
+using YueBa.Utils;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -142,6 +143,7 @@ namespace YueBa.Views
                 participatorList.RemoveAt(0);
             }
             getDetailEvent(id);
+            TileService.UpdateTiles();
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)

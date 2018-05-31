@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Text.RegularExpressions;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -21,6 +22,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using YueBa.Global;
+using YueBa.Utils;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -76,7 +78,7 @@ namespace YueBa.Views
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null)
+            if ((string)e.Parameter != "")
             {
                 var temp = (string)e.Parameter;
                 if (temp.Contains("place"))
@@ -137,6 +139,42 @@ namespace YueBa.Views
             StringBuilder end = new StringBuilder();
             start.AppendFormat("{0}/{1}/{2} {3}:{4}:00", startDate.Date.Year, startDate.Date.Month, startDate.Date.Day, startTime.Time.Hours, startTime.Time.Minutes);
             end.AppendFormat("{0}/{1}/{2} {3}:{4}:00", endDate.Date.Year, endDate.Date.Month, endDate.Date.Day, endTime.Time.Hours, endTime.Time.Minutes);
+
+            if (place.Text == "" ||
+                name.Text == "" ||
+                detail.Text == "" ||
+                maxNum.Text == "")
+            {
+                var show = new MessageDialog("各项输入不得为空").ShowAsync();
+                return;
+            }
+
+            string pattern = @"^[0-9]*$";
+            if(!Regex.IsMatch(maxNum.Text, pattern))
+            {
+                var show = new MessageDialog("最大人数不合法").ShowAsync();
+                return;
+            }
+
+            if(int.Parse(maxNum.Text)<=0)
+            {
+                var show = new MessageDialog("最大参与人数要大于0").ShowAsync();
+                return;
+            }
+
+            if (DateTime.Parse(start.ToString()).CompareTo(DateTime.Now) == -1 ||
+               DateTime.Parse(end.ToString()).CompareTo(DateTime.Parse(start.ToString())) == -1)
+            {
+                var show = new MessageDialog("起始时间要大于当前日期且结束时间不得小于起始时间").ShowAsync();
+                return;
+            }
+
+            if (place.Tag == null)
+            {
+                var show = new MessageDialog("当前地址不存在").ShowAsync();
+                return;
+            }
+
             if ((string)create.Content == "Create")
             {
                 await Services.EventServices.addEvent(Store.getInstance().getToken(), name.Text, detail.Text, start.ToString(), end.ToString(), place.Tag.ToString(), maxNum.Text, file);
@@ -146,6 +184,7 @@ namespace YueBa.Views
                 await Services.EventServices.updateEvent(Store.getInstance().getToken(), name.Tag.ToString(), name.Text, detail.Text, start.ToString(), end.ToString(), place.Tag.ToString(), maxNum.Text, file);
             }
             ControlBar.Current.NavigateToPage("Index");
+            TileService.UpdateTiles();
         }
     }
 }

@@ -18,6 +18,7 @@ using Newtonsoft.Json.Linq;
 using YueBa.Global;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Media.Imaging;
+using YueBa.Utils;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 

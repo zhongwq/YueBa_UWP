@@ -106,6 +106,7 @@
     <Compile Include="Services\BasicService.cs" />
     <Compile Include="Services\EventServices.cs" />
     <Compile Include="Services\PlaceServices.cs" />
+    <Compile Include="Utils\TileService.cs" />
     <Compile Include="Views\Detail.xaml.cs">
       <DependentUpon>Detail.xaml</DependentUpon>
     </Compile>
