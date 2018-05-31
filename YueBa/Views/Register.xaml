@@ -6,35 +6,106 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="RegisterBtn" TargetType="Button">
+            <Setter Property="Foreground" Value="{ThemeResource AccentButtonForeground}"/>
+            <Setter Property="Background" Value="Red"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource AccentButtonBorderBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Red"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="gray"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonBorderBrushDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource AccentButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid>
+
+    <Grid Background="#FFEEF2F2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="370"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
             <TextBlock Text="Register" FontWeight="Bold" FontSize="30" HorizontalAlignment="Center"></TextBlock>
-        </Grid>
-        <StackPanel Grid.Row="1" Width="300" HorizontalAlignment="Center">
-            <Ellipse Width="100" Height="100">
-                <Ellipse.Fill>
-                    <ImageBrush x:Name="userImg" ImageSource="ms-appx:///Assets/default.jpg"/>
-                </Ellipse.Fill>
-            </Ellipse>
-            <AppBarButton Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
-            <TextBox x:Name="username" PlaceholderText="Username"></TextBox>
-            <PasswordBox x:Name="password" PlaceholderText="Password" Margin="0,10"></PasswordBox>
-            <TextBox x:Name="email" PlaceholderText="Email"></TextBox>
-            <TextBox x:Name="phone" PlaceholderText="Phone" Margin="0,10"></TextBox>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button Content="Sign Up" Click="SignUpClick"/>
-                <Button Grid.Column="2" HorizontalAlignment="Right" Content="Log In" Click="LogInClick"></Button>
+            </Grid >
+            <Grid Grid.Row="2" CornerRadius="30" Background="White" Height="470" >
+            <StackPanel Grid.Row="2" Width="300" VerticalAlignment="Top"  >
+                <Ellipse Width="100" Height="100" Margin="0 20 0 0">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="userImg" ImageSource="ms-appx:///Assets/default.jpg"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <AppBarButton Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
+                <TextBox x:Name="username" PlaceholderText="Username"></TextBox>
+                <PasswordBox x:Name="password" PlaceholderText="Password" Margin="0,10"></PasswordBox>
+                <TextBox x:Name="email" PlaceholderText="Email"></TextBox>
+                <TextBox x:Name="phone" PlaceholderText="Phone" Margin="0,10"></TextBox>
+
+                <Button Content="Sign Up" Click="SignUpClick" Style="{StaticResource AccentButtonStyle}" Margin="0 10" Width="300"/>
+                <Button  HorizontalAlignment="Right" Content="Log In" Click="LogInClick" Style="{StaticResource RegisterBtn}"  Width="300"></Button>
+            </StackPanel>
             </Grid>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
