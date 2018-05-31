@@ -62,8 +62,8 @@ namespace YueBa.Views
 
         private async void CreateClick(object sender, RoutedEventArgs e)
         {
-            if (price.Text == ""  ||
-                name.Text == ""   ||
+            if (price.Text == "" ||
+                name.Text == "" ||
                 detail.Text == "" ||
                 address.Text == "")
             {
@@ -89,12 +89,20 @@ namespace YueBa.Views
             temp.address = address.Text;
             temp.detail = detail.Text;
             temp.price = Double.Parse(price.Text);
-            if((string)create.Content == "Create")
+            if ((string)create.Content == "Create")
             {
                 string placeName = await Services.PlaceServices.addPlace(Store.getInstance().getToken(), temp.name, temp.address, temp.detail, temp.price, file);
                 if (placeName != "")
                 {
-                    ControlBar.Current.NavigateToPage("AddActivity", "place" + placeName);
+                    if (name.Tag == null)
+                    {
+                        ControlBar.Current.NavigateToPage("Index");
+                    }
+                    else
+                    {
+                        ControlBar.Current.NavigateToPage("AddActivity", "place" + placeName);
+                    }
+
                 }
             }
             else
@@ -110,13 +118,20 @@ namespace YueBa.Views
         {
             if ((string)e.Parameter != null)
             {
-                PlaceItem place = await Services.PlaceServices.getSingleEvent((string)e.Parameter);
-                name.Text = place.name;
-                name.Tag = place.id.ToString();
-                address.Text = place.address;
-                price.Text = place.price.ToString();
-                detail.Text = place.detail;
-                create.Content = "Update";
+                if ((string)e.Parameter == "edit")
+                {
+                    name.Tag = "edit";
+                }
+                else
+                {
+                    PlaceItem place = await Services.PlaceServices.getSingleEvent((string)e.Parameter);
+                    name.Text = place.name;
+                    name.Tag = place.id.ToString();
+                    address.Text = place.address;
+                    price.Text = place.price.ToString();
+                    detail.Text = place.detail;
+                    create.Content = "Update";
+                }
             }
         }
     }

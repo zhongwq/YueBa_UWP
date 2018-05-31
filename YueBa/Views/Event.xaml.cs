@@ -67,7 +67,7 @@ namespace YueBa.Views
 
         private void AddPlaceClick(object sender, RoutedEventArgs e)
         {
-            ControlBar.Current.NavigateToPage("Place");
+            ControlBar.Current.NavigateToPage("EditPlace", "edit");
         }
 
         private void SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
