@@ -56,9 +56,9 @@
                             </StackPanel>
                         </ListViewItem>
                         <ListViewItem>
-                            <StackPanel Orientation="Horizontal" x:Name="Settings">
-                                <SymbolIcon Symbol="Setting" />
-                                <TextBlock Text="Settings"
+                            <StackPanel Orientation="Horizontal" x:Name="TutorialVideo">
+                                <SymbolIcon Symbol="Video" />
+                                <TextBlock Text="TutorialVideo"
                                            Margin="24,0,0,0"
                                            VerticalAlignment="Center" />
                             </StackPanel>

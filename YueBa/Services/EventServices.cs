@@ -147,7 +147,15 @@ namespace YueBa.Services
         {
             var json = JsonSerializer.Create();
             String eventsStr = await BasicService.getRequest("getAllEvents");
-            return (eventsStr == null) ? null : json.Deserialize<Events>(new JsonTextReader(new StringReader(eventsStr)));
+            if (eventsStr == null) return null;
+            Events events = json.Deserialize<Events>(new JsonTextReader(new StringReader(eventsStr)));
+            foreach (var eventItem in events.events)
+            {
+                eventItem.startTime = eventItem.startTime.ToLocalTime();
+                eventItem.endTime = eventItem.endTime.ToLocalTime();
+            }
+
+            return events;
         }
 
         /***
@@ -158,7 +166,15 @@ namespace YueBa.Services
             String jsonStr = JsonConvert.SerializeObject(new { token });
             var json = JsonSerializer.Create();
             String eventsStr = await BasicService.postRequestJSON("getParticipateEvents", jsonStr);
-            return (eventsStr == null) ? null : json.Deserialize<Events>(new JsonTextReader(new StringReader(eventsStr)));
+            if (eventsStr == null) return null;
+            Events events = json.Deserialize<Events>(new JsonTextReader(new StringReader(eventsStr)));
+            foreach (var eventItem in events.events)
+            {
+                eventItem.startTime = eventItem.startTime.ToLocalTime();
+                eventItem.endTime = eventItem.endTime.ToLocalTime();
+            }
+
+            return events;
         }
 
         /***
@@ -169,7 +185,15 @@ namespace YueBa.Services
             string jsonStr = JsonConvert.SerializeObject(new { token });
             var json = JsonSerializer.Create();
             String eventsStr = await BasicService.postRequestJSON("getAllOwnedEvents", jsonStr);
-            return (eventsStr == null) ? null : json.Deserialize<Events>(new JsonTextReader(new StringReader(eventsStr)));
+            if (eventsStr == null) return null;
+            Events events = json.Deserialize<Events>(new JsonTextReader(new StringReader(eventsStr)));
+            foreach (var eventItem in events.events)
+            {
+                eventItem.startTime = eventItem.startTime.ToLocalTime();
+                eventItem.endTime = eventItem.endTime.ToLocalTime();
+            }
+
+            return events;
         }
 
         /***
@@ -180,7 +204,12 @@ namespace YueBa.Services
             string jsonStr = JsonConvert.SerializeObject(new { token, id });
             var json = JsonSerializer.Create();
             String eventsStr = await BasicService.postRequestJSON("getDetailEvent", jsonStr);
-            return (eventsStr == null) ? null : json.Deserialize<EventDetail>(new JsonTextReader(new StringReader(eventsStr)));
+            if (eventsStr == null) return null;
+            EventDetail eventDetail = json.Deserialize<EventDetail>(new JsonTextReader(new StringReader(eventsStr)));
+            eventDetail.detail.startTime = eventDetail.detail.startTime.ToLocalTime();
+            eventDetail.detail.endTime = eventDetail.detail.endTime.ToLocalTime();
+
+            return eventDetail;
          }
 
         /***
@@ -213,7 +242,11 @@ namespace YueBa.Services
             String jsonStr = JsonConvert.SerializeObject(new {id });
             String eventStr = await BasicService.postRequestJSON("getSingleEvent", jsonStr);
             var json = JsonSerializer.Create();
-            return (eventStr == null) ? null : json.Deserialize<EventItem>(new JsonTextReader(new StringReader(eventStr)));
+            if (eventStr == null) return null;
+            var eventItem = json.Deserialize<EventItem>(new JsonTextReader(new StringReader(eventStr)));
+            eventItem.startTime = eventItem.startTime.ToLocalTime();
+            eventItem.endTime = eventItem.endTime.ToLocalTime();
+            return eventItem;
         }
     }
 }

@@ -47,7 +47,19 @@
                     <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">电话:</TextBlock>
                     <TextBlock x:Name="phone" Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Center">15626225848</TextBlock>
                 </Grid>
-                <TextBlock Margin="20" FontSize="22" FontWeight="Bold">地点详情</TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="200"/>
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton Icon="Clock"></AppBarButton>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind detail.detail.startTime}">2018-02-30 15:30</TextBlock>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">To</TextBlock>
+                    <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" Text="{x:Bind detail.detail.endTime}">2018-02-30 15:30</TextBlock>
+                </Grid>
+                <TextBlock Margin="20 20 0 0" FontSize="22" FontWeight="Bold">地点详情</TextBlock>
                 <Grid Height="200" Margin="0 20">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -78,9 +90,7 @@
                     <TextBlock x:Name="placeDetail" Margin="20 0" Grid.Column="1" Grid.Row="2">fasndijknvgkjfadbnlgkjblb</TextBlock>
                 </Grid>
                 <TextBlock Margin="20" FontSize="22" FontWeight="Bold">事件详情</TextBlock>
-                <TextBlock x:Name="EventDetail" TextWrapping="WrapWholeWords" Margin="20 0">
-                    那功夫第四宫的粉丝哦怕大哥i哦就上面的富婆公开哦皮肤的考生破壳攻破对方开个破反动派顾客破发点看普工看到佛山个
-                </TextBlock>
+                <TextBlock x:Name="EventDetail" TextWrapping="WrapWholeWords" Margin="20 0"></TextBlock>
             </StackPanel>
         </ScrollViewer>
         <ScrollViewer x:Name="participators" Grid.Column="1">
@@ -108,14 +118,18 @@
                                 <Grid Height="60">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="50"/>
-                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Ellipse Width="50" Height="50">
                                         <Ellipse.Fill>
                                             <ImageBrush ImageSource="{Binding img}"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
-                                    <TextBlock Grid.Column="1" Margin="15 0" Text="{Binding username}" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="1" Margin="15 0" Text="{Binding username}" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="2" Margin="15 0" Text="电话: " HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+                                    <TextBlock Grid.Column="3" Margin="15 0" Text="{Binding phone}" HorizontalAlignment="Left" VerticalAlignment="Center"></TextBlock>
                                 </Grid>
                             </UserControl>
                         </DataTemplate>
