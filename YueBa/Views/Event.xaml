@@ -9,84 +9,49 @@
     xmlns:config="using:YueBa.Global"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="300"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="13*"/>
-                    <ColumnDefinition Width="288*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="70"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Image x:Name="image" Grid.Row="0" Height="100" Width="200" Stretch="Fill" Source="ms-appx:///Assets/event.jpg" Grid.Column="1" Margin="37.5,0,50,0"></Image>
-                <AppBarButton Grid.Row="1" Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture" Grid.Column="1"></AppBarButton>
-                <TextBlock Grid.Row="2" Text="Place" Grid.ColumnSpan="2"></TextBlock>
-                <AutoSuggestBox x:Name="place" Grid.Row="3" TextChanged="TextChanged" SuggestionChosen="SuggestionChosen" TextMemberPath="name" Grid.ColumnSpan="2">
-                    <AutoSuggestBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Image Width="50" Source="{Binding img}" />
-                                <StackPanel Grid.Column="1" Margin="7,3,4,3">
-                                    <TextBlock FontSize="15" FontWeight="Bold" Text="{Binding name}"/>
-                                    <TextBlock>
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="400">
+        <StackPanel Width="300">
+            <Image x:Name="image" Height="100" Width="200" Stretch="Fill" Source="ms-appx:///Assets/event.jpg" Margin="0,20"></Image>
+            <AppBarButton Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
+            <TextBlock Text="Place"></TextBlock>
+            <AutoSuggestBox x:Name="place" TextChanged="TextChanged" SuggestionChosen="SuggestionChosen" TextMemberPath="name">
+                <AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Width="50" Source="{Binding img}" />
+                            <StackPanel Grid.Column="1" Margin="7,3,4,3">
+                                <TextBlock FontSize="15" FontWeight="Bold" Text="{Binding name}"/>
+                                <TextBlock>
                                         <Run>电话：</Run>
                                         <Run Text="{Binding owner.phone}" />
-                                    </TextBlock>
-                                    <TextBlock>
+                                </TextBlock>
+                                <TextBlock>
                                         <Run>价格：</Run>
                                         <Run Text="{Binding price}"></Run>
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </AutoSuggestBox.ItemTemplate>
-                </AutoSuggestBox>
-                <TextBlock Grid.Row="4" Text="Name" Grid.ColumnSpan="2"></TextBlock>
-                <TextBox x:Name="name" Grid.Row="5" Margin="0,10" Grid.ColumnSpan="2"></TextBox>
-                <TextBlock Grid.Row="6" Text="Start Time" Grid.ColumnSpan="2"></TextBlock>
-                <DatePicker x:Name="startDate" Grid.Row="7" Margin="0,10" Grid.ColumnSpan="2" Width="300"></DatePicker>
-                <TimePicker x:Name="startTime" Grid.Row="8" Margin="0,10" Grid.ColumnSpan="2" Width="300"></TimePicker>
-                <TextBlock Grid.Row="9" Text="End Time" Grid.ColumnSpan="2"></TextBlock>
-                <DatePicker x:Name="endDate" Grid.Row="10" Margin="0,10" Grid.ColumnSpan="2" Width="300"></DatePicker>
-                <TimePicker x:Name="endTime" Grid.Row="11" Margin="0,10" Grid.ColumnSpan="2" Width="300"></TimePicker>
-                <TextBlock Grid.Row="12" Text="Detail" Grid.ColumnSpan="2"></TextBlock>
-                <TextBox x:Name="detail" Grid.Row="13" Margin="0,10" Grid.ColumnSpan="2"></TextBox>
-                <TextBlock Grid.Row="14" Text="Max Number" Grid.ColumnSpan="2"></TextBlock>
-                <TextBox x:Name="maxNum" Grid.Row="15" Margin="0,10" Grid.ColumnSpan="2"></TextBox>
-                <Button x:Name="create" Grid.Row="16" Content="Create" HorizontalAlignment="Left" Click="CreateClick" Grid.ColumnSpan="2"></Button>
-                <Button x:Name="addPlace" Grid.Row="16" Content="Add New Place" HorizontalAlignment="Center" Click="AddPlaceClick" Grid.Column="1" Margin="77.5,0,90,0"></Button>
-                <Button x:Name="cancel" Grid.Row="16" Content="Cancel" HorizontalAlignment="Right" Grid.Column="1"></Button>
-            </Grid>
-        </Grid>
-
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </AutoSuggestBox.ItemTemplate>
+            </AutoSuggestBox>
+            <TextBlock Text="Name"></TextBlock>
+            <TextBox x:Name="name" Margin="0,10"></TextBox>
+            <TextBlock Text="Start Time"></TextBlock>
+            <DatePicker x:Name="startDate" Margin="0,10" Width="300"></DatePicker>
+            <TimePicker x:Name="startTime" Margin="0,10" Width="300"></TimePicker>
+            <TextBlock Text="End Time"></TextBlock>
+            <DatePicker x:Name="endDate" Margin="0,10" Width="300"></DatePicker>
+            <TimePicker x:Name="endTime" Margin="0,10" Width="300"></TimePicker>
+            <TextBlock Text="Detail"></TextBlock>
+            <TextBox x:Name="detail" Margin="0,10"></TextBox>
+            <TextBlock Text="Max Number"></TextBlock>
+            <TextBox x:Name="maxNum" Margin="0,10"></TextBox>
+            <Button x:Name="create" Content="Create" HorizontalAlignment="Left" Click="CreateClick" Style="{StaticResource AccentButtonStyle}" Width="300" Margin="0,10"></Button>
+            <Button x:Name="addPlace" Content="Add New Place" HorizontalAlignment="Center" Style="{StaticResource AccentButtonStyle}" Width="300" Click="AddPlaceClick" Margin="0, 10"></Button>
+        </StackPanel>
     </Grid>
 </Page>

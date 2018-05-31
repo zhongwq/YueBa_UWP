@@ -140,8 +140,8 @@ namespace YueBa.Views
             start.AppendFormat("{0}/{1}/{2} {3}:{4}:00", startDate.Date.Year, startDate.Date.Month, startDate.Date.Day, startTime.Time.Hours, startTime.Time.Minutes);
             end.AppendFormat("{0}/{1}/{2} {3}:{4}:00", endDate.Date.Year, endDate.Date.Month, endDate.Date.Day, endTime.Time.Hours, endTime.Time.Minutes);
 
-            if (place.Text == "" ||
-                name.Text == "" ||
+            if (place.Text == ""  ||
+                name.Text == ""   ||
                 detail.Text == "" ||
                 maxNum.Text == "")
             {
