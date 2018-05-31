@@ -17,6 +17,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using YueBa.Global;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Media.Imaging;
 
 // https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
 
@@ -54,6 +55,7 @@ namespace YueBa.Views
                     element.img = Config.api + element.img;
                     test.Add(element);
                 }
+                organizerImg.ImageSource = new BitmapImage(new Uri(Global.Config.api + store.img));
             }
         }
 

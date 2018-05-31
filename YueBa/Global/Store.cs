@@ -13,6 +13,7 @@ namespace YueBa.Global
         public String email;
         public String phone;
         public String token = null;
+        public String img;
         private static Store instance;
 
         private Store() { }
@@ -35,6 +36,7 @@ namespace YueBa.Global
                 email = (String)composite["email"];
                 phone = (String)composite["phone"];
                 token = (String)composite["token"];
+                img = (String)composite["img"];
             } else
             {
                 username = email = phone = token = null;

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -38,7 +39,7 @@ namespace YueBa.Views
             GetAllPlaces();
         }
 
-        private StorageFile file;
+        private StorageFile file = null;
 
         private async void GetAllPlaces()
         {
@@ -73,12 +74,34 @@ namespace YueBa.Views
             place.Tag = temp.id;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null && !(e.Parameter is String))
+            if (e.Parameter != null)
             {
-                PlaceItem temp = (PlaceItem)e.Parameter;
-                place.Text = temp.name;
+                var temp = (string)e.Parameter;
+                if (temp.Contains("place"))
+                {
+                    place.Text = temp.Substring(5);
+                }
+                else
+                {
+                    EventItem activity = await Services.EventServices.getSingleEvent(temp);
+                    name.Tag = temp;
+                    place.Tag = activity.place.id;
+                    place.Text = activity.place.name;
+                    name.Text = activity.name;
+                    startDate.Date = activity.startTime;
+                    StringBuilder sTime = new StringBuilder();
+                    sTime.AppendFormat("{0}:{1}:00", activity.startTime.Hour, activity.startTime.Minute);
+                    startTime.Time = TimeSpan.Parse(sTime.ToString());
+                    endDate.Date = activity.endTime;
+                    StringBuilder eTime = new StringBuilder();
+                    eTime.AppendFormat("{0}:{1}:00", activity.endTime.Hour, activity.endTime.Minute);
+                    endTime.Time = TimeSpan.Parse(eTime.ToString());
+                    detail.Text = activity.detail;
+                    maxNum.Text = activity.maxNum.ToString();
+                    create.Content = "Update";
+                }   
             }
         }
 
@@ -110,7 +133,18 @@ namespace YueBa.Views
 
         private async void CreateClick(object sender, RoutedEventArgs e)
         {
-            await Services.EventServices.addEvent(Store.getInstance().getToken(), name.Text, detail.Text, startTime.Text, endTime.Text, place.Tag.ToString(), maxNum.Text, file);
+            StringBuilder start = new StringBuilder();
+            StringBuilder end = new StringBuilder();
+            start.AppendFormat("{0}/{1}/{2} {3}:{4}:00", startDate.Date.Year, startDate.Date.Month, startDate.Date.Day, startTime.Time.Hours, startTime.Time.Minutes);
+            end.AppendFormat("{0}/{1}/{2} {3}:{4}:00", endDate.Date.Year, endDate.Date.Month, endDate.Date.Day, endTime.Time.Hours, endTime.Time.Minutes);
+            if ((string)create.Content == "Create")
+            {
+                await Services.EventServices.addEvent(Store.getInstance().getToken(), name.Text, detail.Text, start.ToString(), end.ToString(), place.Tag.ToString(), maxNum.Text, file);
+            }
+            else
+            {
+                await Services.EventServices.updateEvent(Store.getInstance().getToken(), name.Tag.ToString(), name.Text, detail.Text, start.ToString(), end.ToString(), place.Tag.ToString(), maxNum.Text, file);
+            }
             ControlBar.Current.NavigateToPage("Index");
         }
     }

@@ -29,7 +29,7 @@ namespace YueBa.Services
         /***
          * 创建地点接口
          */
-        public static async Task<bool> addPlace(String token, String name, String address, String detail, Double price, StorageFile file = null)
+        public static async Task<string> addPlace(String token, String name, String address, String detail, Double price, StorageFile file = null)
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token),"token");
@@ -45,8 +45,13 @@ namespace YueBa.Services
                 content.Add(streamContent, "image", file.Name);
             }
             var res = await BasicService.postRequestMultipartData("addPlace", content);
-
-            return res != null;
+            if (res != null)
+            {
+                JObject id = (JObject)JsonConvert.DeserializeObject(res);
+                return (string)id["place"]["name"];
+            }
+            
+            return "";
         }
 
         /***
@@ -56,10 +61,11 @@ namespace YueBa.Services
         {
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(token), "token");
+            content.Add(new StringContent(id), "id");
             content.Add(new StringContent(name), "name");
             content.Add(new StringContent(address), "address");
             content.Add(new StringContent(detail), "detail");
-            content.Add(new StringContent(price.ToString()), "name");
+            content.Add(new StringContent(price.ToString()), "price");
 
             if (file != null)
             {

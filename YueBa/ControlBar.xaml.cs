@@ -57,7 +57,7 @@ namespace YueBa
                     this.ContentFrame.Navigate(typeof(Place));
                     break;
                 case "AddActivity":
-                    this.ContentFrame.Navigate(typeof(Event));
+                    this.ContentFrame.Navigate(typeof(Event), id);
                     break;
                 case "EditEvent":
                     this.ContentFrame.Navigate(typeof(Event), id);

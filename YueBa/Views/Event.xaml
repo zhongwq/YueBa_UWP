@@ -24,7 +24,13 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="13*"/>
+                    <ColumnDefinition Width="288*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -42,10 +48,10 @@
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Image x:Name="image" Grid.Row="0" Height="100" Width="200" Stretch="Fill" Source="ms-appx:///Assets/event.jpg"></Image>
-                <AppBarButton Grid.Row="1" Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture"></AppBarButton>
-                <TextBlock Grid.Row="2" Text="Place"></TextBlock>
-                <AutoSuggestBox x:Name="place" Grid.Row="3" TextChanged="TextChanged" SuggestionChosen="SuggestionChosen" TextMemberPath="name">
+                <Image x:Name="image" Grid.Row="0" Height="100" Width="200" Stretch="Fill" Source="ms-appx:///Assets/event.jpg" Grid.Column="1" Margin="37.5,0,50,0"></Image>
+                <AppBarButton Grid.Row="1" Icon="Pictures" HorizontalAlignment="Right" Click="ChoosePicture" Grid.Column="1"></AppBarButton>
+                <TextBlock Grid.Row="2" Text="Place" Grid.ColumnSpan="2"></TextBlock>
+                <AutoSuggestBox x:Name="place" Grid.Row="3" TextChanged="TextChanged" SuggestionChosen="SuggestionChosen" TextMemberPath="name" Grid.ColumnSpan="2">
                     <AutoSuggestBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -69,19 +75,21 @@
                         </DataTemplate>
                     </AutoSuggestBox.ItemTemplate>
                 </AutoSuggestBox>
-                <TextBlock Grid.Row="4" Text="Name"></TextBlock>
-                <TextBox x:Name="name" Grid.Row="5" Margin="0,10"></TextBox>
-                <TextBlock Grid.Row="6" Text="Start Time"></TextBlock>
-                <TextBox x:Name="startTime" Grid.Row="7" Margin="0,10"></TextBox>
-                <TextBlock Grid.Row="8" Text="End Time"></TextBlock>
-                <TextBox x:Name="endTime" Grid.Row="9" Margin="0,10"></TextBox>
-                <TextBlock Grid.Row="10" Text="Detail"></TextBlock>
-                <TextBox x:Name="detail" Grid.Row="11" Margin="0,10"></TextBox>
-                <TextBlock Grid.Row="12" Text="Max Number"></TextBlock>
-                <TextBox x:Name="maxNum" Grid.Row="13" Margin="0,10"></TextBox>
-                <Button x:Name="create" Grid.Row="14" Content="Create" HorizontalAlignment="Left" Click="CreateClick"></Button>
-                <Button x:Name="addPlace" Grid.Row="14" Content="Add New Place" HorizontalAlignment="Center" Click="AddPlaceClick"></Button>
-                <Button x:Name="cancel" Grid.Row="14" Content="Cancel" HorizontalAlignment="Right"></Button>
+                <TextBlock Grid.Row="4" Text="Name" Grid.ColumnSpan="2"></TextBlock>
+                <TextBox x:Name="name" Grid.Row="5" Margin="0,10" Grid.ColumnSpan="2"></TextBox>
+                <TextBlock Grid.Row="6" Text="Start Time" Grid.ColumnSpan="2"></TextBlock>
+                <DatePicker x:Name="startDate" Grid.Row="7" Margin="0,10" Grid.ColumnSpan="2" Width="300"></DatePicker>
+                <TimePicker x:Name="startTime" Grid.Row="8" Margin="0,10" Grid.ColumnSpan="2" Width="300"></TimePicker>
+                <TextBlock Grid.Row="9" Text="End Time" Grid.ColumnSpan="2"></TextBlock>
+                <DatePicker x:Name="endDate" Grid.Row="10" Margin="0,10" Grid.ColumnSpan="2" Width="300"></DatePicker>
+                <TimePicker x:Name="endTime" Grid.Row="11" Margin="0,10" Grid.ColumnSpan="2" Width="300"></TimePicker>
+                <TextBlock Grid.Row="12" Text="Detail" Grid.ColumnSpan="2"></TextBlock>
+                <TextBox x:Name="detail" Grid.Row="13" Margin="0,10" Grid.ColumnSpan="2"></TextBox>
+                <TextBlock Grid.Row="14" Text="Max Number" Grid.ColumnSpan="2"></TextBlock>
+                <TextBox x:Name="maxNum" Grid.Row="15" Margin="0,10" Grid.ColumnSpan="2"></TextBox>
+                <Button x:Name="create" Grid.Row="16" Content="Create" HorizontalAlignment="Left" Click="CreateClick" Grid.ColumnSpan="2"></Button>
+                <Button x:Name="addPlace" Grid.Row="16" Content="Add New Place" HorizontalAlignment="Center" Click="AddPlaceClick" Grid.Column="1" Margin="77.5,0,90,0"></Button>
+                <Button x:Name="cancel" Grid.Row="16" Content="Cancel" HorizontalAlignment="Right" Grid.Column="1"></Button>
             </Grid>
         </Grid>
 

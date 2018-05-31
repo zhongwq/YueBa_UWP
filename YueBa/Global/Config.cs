@@ -8,6 +8,6 @@ namespace YueBa.Global
 {
     class Config
     {
-        public static String api = "http://172.18.33.165:9999/";
+        public static String api = "http://172.18.33.165:8080/";
     }
 }

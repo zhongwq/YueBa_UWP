@@ -65,8 +65,35 @@ namespace YueBa.Views
             temp.address = address.Text;
             temp.detail = detail.Text;
             temp.price = Double.Parse(price.Text);
-            await Services.PlaceServices.addPlace(Store.getInstance().getToken(), temp.name, temp.address, temp.detail, temp.price, file);
-            ControlBar.Current.NavigateToPage("Index");
+            if((string)create.Content == "Create")
+            {
+                string placeName = await Services.PlaceServices.addPlace(Store.getInstance().getToken(), temp.name, temp.address, temp.detail, temp.price, file);
+                if (placeName != "")
+                {
+                    ControlBar.Current.NavigateToPage("AddActivity", "place" + placeName);
+                }
+            }
+            else
+            {
+                if (await Services.PlaceServices.updatePlace(Store.getInstance().getToken(), name.Tag.ToString(), temp.name, temp.address, temp.detail, temp.price, file))
+                {
+                    ControlBar.Current.NavigateToPage("Index");
+                }
+            }
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if ((string)e.Parameter != null)
+            {
+                PlaceItem place = await Services.PlaceServices.getSingleEvent((string)e.Parameter);
+                name.Text = place.name;
+                name.Tag = place.id.ToString();
+                address.Text = place.address;
+                price.Text = place.price.ToString();
+                detail.Text = place.detail;
+                create.Content = "Update";
+            }
         }
     }
 }

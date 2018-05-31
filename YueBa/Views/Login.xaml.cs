@@ -36,12 +36,14 @@ namespace YueBa
                     composite["username"] = result["user"]["username"].ToString();
                     composite["email"] = result["user"]["email"].ToString();
                     composite["phone"] = result["user"]["phone"].ToString();
+                    composite["img"] = result["user"]["img"].ToString();
                     ApplicationData.Current.LocalSettings.Values["store"] = composite;
                 }
                 store.username = (String)result["user"]["username"];
                 store.email = (String)result["user"]["email"];
                 store.phone = (String)result["user"]["phone"];
                 store.token = (String)result["token"];
+                store.img = (String)result["user"]["img"];
 
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(ControlBar), null);
