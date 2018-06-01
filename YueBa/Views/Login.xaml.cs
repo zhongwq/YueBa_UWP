@@ -45,6 +45,8 @@ namespace YueBa
                 store.token = (String)result["token"];
                 store.img = (String)result["user"]["img"];
 
+                Utils.TileService.UpdateTiles();
+
                 Frame rootFrame = Window.Current.Content as Frame;
                 rootFrame.Navigate(typeof(ControlBar), null);
             }

@@ -78,6 +78,9 @@ namespace YueBa
                     NavigateBar.SelectedValue = null;
                     this.ContentFrame.Navigate(typeof(PlaceDetail), id);
                     break;
+                case "TutorialVideo":
+                    this.ContentFrame.Navigate(typeof(TutourialPage));
+                    break;
             }
         }
 

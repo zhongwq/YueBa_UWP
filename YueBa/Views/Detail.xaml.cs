@@ -78,6 +78,7 @@ namespace YueBa.Views
         
         private async void getDetailEvent(String id)
         {
+            // 通过请求接口获取EventDetail, 对页面显示内容进行相应更改
             detail = await EventServices.getEventDetail(Global.Store.getInstance().token, id);
             detail.detail.img = Global.Config.api + detail.detail.img;
             detail.detail.organizer.img = Global.Config.api + detail.detail.organizer.img;

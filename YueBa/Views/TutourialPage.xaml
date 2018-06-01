@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="YueBa.Views.TutourialPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:YueBa.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,60,0,0" Text="各操作的演示视频" Style="{StaticResource HeaderTextBlockStyle}" VerticalAlignment="Top"></TextBlock>
+        <MediaElement Grid.Row="1" Width="800" Height="600" Source="ms-appx:///Assets/Test.mp4" AreTransportControlsEnabled="True"></MediaElement>
+    </Grid>
+</Page>

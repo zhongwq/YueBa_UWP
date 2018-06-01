@@ -127,6 +127,7 @@ namespace YueBa.Views
                     PlaceItem place = await Services.PlaceServices.getSingleEvent((string)e.Parameter);
                     name.Text = place.name;
                     name.Tag = place.id.ToString();
+                    image.Source = new BitmapImage(new Uri(Global.Config.api+place.img));
                     address.Text = place.address;
                     price.Text = place.price.ToString();
                     detail.Text = place.detail;

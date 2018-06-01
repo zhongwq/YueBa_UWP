@@ -14,6 +14,9 @@ namespace YueBa.Services
 {
     class BasicService
     {
+        /***
+         * Get 请求的基本函数
+         */
         public static async Task<String> getRequest(string request)
         {
             var httpClient = new HttpClient();
@@ -30,6 +33,9 @@ namespace YueBa.Services
             return responseText;
         }
 
+        /***
+         * Post 请求的基本函数 (json请求)
+         */
         public static async Task<String> postRequestJSON(string request, string postData)
         {
             var httpClient = new HttpClient();
@@ -46,6 +52,9 @@ namespace YueBa.Services
             return responseText;
         }
 
+        /***
+         * Post 请求的基本函数 (Multipart/FormData请求)
+         */
         public static async Task<String> postRequestMultipartData(string request, MultipartFormDataContent content) {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));

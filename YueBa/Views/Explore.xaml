@@ -174,8 +174,7 @@
                                 <Grid Height="170">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="200"/>
-                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
                                         <Image x:Name="picture" Source="{x:Bind img}" Height="140" Width="140" />

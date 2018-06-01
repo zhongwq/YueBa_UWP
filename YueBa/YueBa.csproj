@@ -134,6 +134,9 @@
     <Compile Include="Views\Register.xaml.cs">
       <DependentUpon>Register.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TutourialPage.xaml.cs">
+      <DependentUpon>TutourialPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -145,6 +148,7 @@
     <Content Include="Assets\default.jpg" />
     <Content Include="Assets\event.jpg" />
     <Content Include="Assets\Icon.png" />
+    <Content Include="Assets\Test.mp4" />
     <Content Include="Assets\YueBa.png" />
     <Content Include="Assets\YueBa_UWP.PNG" />
     <Content Include="Properties\Default.rd.xml" />
@@ -210,6 +214,10 @@
     <Page Include="Views\Register.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TutourialPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

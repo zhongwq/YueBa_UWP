@@ -33,6 +33,7 @@ namespace YueBa
             this.Suspending += OnSuspending;
             Global.Store.getInstance().Initialize();
             TileUpdater tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication();
+            tileUpdater.Clear();
             TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(true);
         }
 
@@ -71,7 +72,10 @@ namespace YueBa
                     // 并通过将所需信息作为导航参数传入来配置
                     // 参数
                     if (Global.Store.getInstance().hasToken())
+                    {
                         rootFrame.Navigate(typeof(ControlBar), e.Arguments);
+                        Utils.TileService.UpdateTiles();
+                    }
                     else
                         rootFrame.Navigate(typeof(Login), e.Arguments);
                 }

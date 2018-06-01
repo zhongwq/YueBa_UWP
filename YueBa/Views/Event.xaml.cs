@@ -88,6 +88,7 @@ namespace YueBa.Views
                 else
                 {
                     EventItem activity = await Services.EventServices.getSingleEvent(temp);
+                    image.Source = new BitmapImage(new Uri(Global.Config.api + activity.img));
                     name.Tag = temp;
                     place.Tag = activity.place.id;
                     place.Text = activity.place.name;
